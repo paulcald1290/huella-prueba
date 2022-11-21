@@ -39,7 +39,7 @@
 
 		function generaToken() {
 			var valToken;
-			var hash1 = CryptoJS.SHA512("01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+			var hash1 = CryptoJS.AES.encrypt("01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 			//var valToken;
 			//var valor = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 			//valToken = bcrypt.hash(valor,52);
