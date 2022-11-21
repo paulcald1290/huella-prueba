@@ -21,7 +21,7 @@
 	<script src="./libMB/crypto/ripemd160.js"></script>
 	<script src="./libMB/crypto/x64-core.js"></script>
 	<script src="./libMB/crypto/sha512.js"></script>
-	<script src="./bcrypt.js"></script>
+	<script src="./node_modules/bcryptjs/bin/bcrypt"></script>
 
 	<script language="JavaScript" type="text/javascript" src="./libMB/jsrasign/rsapem-1.1.min.js"></script>
 	<script language="JavaScript" type="text/javascript" src="./libMB/jsrasign/rsasign-1.2.min.js"></script>
@@ -35,7 +35,7 @@
 
 	<script type='text/javascript'>
 		var Autentia = new plgAutentiaJS();
-		const bcrypt = required('bcrypt.js');
+		var bcrypt = new bcryptJS();
 
 		function generaToken() {
 			var valToken;
