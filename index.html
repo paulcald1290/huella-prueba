@@ -37,7 +37,7 @@
 
 		function generaToken() {
 			var valToken;
-			var hash1 = CryptoJS.SHA512("./1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");		
+			var hash1 = CryptoJS.SHA512("./1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ");		
 			valToken = hash1.toString(CryptoJS.enc.Hex);
 			return valToken;		
 		}
