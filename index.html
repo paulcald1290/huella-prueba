@@ -81,7 +81,7 @@
 						//true (siempre mantiene el foco la ventana Autentia) o false (puede perder el foco la ventana Autentia)
 						var focoAutentia = true;
 						//Llamada de transaccion
-						Autentia.Transaccion2('../INSTITUCION/verificadatos', entradas, salidas, focoAutentia, Ttoken, function(resultado){
+						Autentia.Transaccion2('../CLARO/verificadatos', entradas, salidas, focoAutentia, Ttoken, function(resultado){
 								//Obtencion de los valores de retorno de la transaccion
 								if (validaToken(resultado.token)) {
 									alert('Erc : ' + resultado.ParamsGet.Erc + ' - Nro Auditoria : ' + resultado.ParamsGet.NroAudit + ' - ErcDesc : ' + resultado.ParamsGet.ErcDesc);
