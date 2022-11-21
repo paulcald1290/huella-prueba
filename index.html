@@ -91,6 +91,7 @@
 			var Ttoken = generaToken();
 
 			Autentia.IniciarSesionLogin(document.Form1.RutOper.value, Ttoken, function(response){
+				console.log(response);
 					if (validaToken(response.token)) {
 						if (response.ParamsGet.hasOwnProperty('LoginResult')) {
 							alert(response.ParamsGet.LoginResult);
