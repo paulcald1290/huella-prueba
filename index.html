@@ -97,7 +97,7 @@
 						if (response.ParamsGet.hasOwnProperty('LoginResult')) {
 							alert(response.ParamsGet.LoginResult);
 						}
-						if (response.ParamsGet.LoginResult == 0)
+						if (response.ParamsGet.LoginResult == 0 || response.ParamsGet.LoginResult == '0')
 						{
 							alert("Inicio Sesion");
 						}
