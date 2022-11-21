@@ -92,19 +92,19 @@
 
 			Autentia.IniciarSesionLogin(document.Form1.RutOper.value, Ttoken, function(response){
 				
-					if (validaToken(response.token)) {
+					//if (validaToken(response.token)) {
 						console.log(response);
-						if (response.ParamsGet.hasOwnProperty('LoginResult')) {
-							alert(response.ParamsGet.LoginResult);
-						}
-						if (response.ParamsGet.LoginResult == 0 || response.ParamsGet.LoginResult == '0')
-						{
-							alert("Inicio Sesion");
-						}
-					} else {
-						console.log(response);
-						alert('Token invalido...');
-					};
+						// if (response.ParamsGet.hasOwnProperty('LoginResult')) {
+						// 	alert(response.ParamsGet.LoginResult);
+						// }
+						// if (response.ParamsGet.LoginResult == 0 || response.ParamsGet.LoginResult == '0')
+						// {
+						// 	alert("Inicio Sesion");
+						// }
+					//} else {
+					//	console.log(response);
+					//	alert('Token invalido...');
+				//	};
 			})
 		}
 
