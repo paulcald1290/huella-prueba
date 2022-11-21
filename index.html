@@ -64,28 +64,35 @@
 		function Verificar()
 		{
 			var Ttoken = generaToken();
+                 const salidas = ['pRut', 'Erc', 'ErcDesc', 'NroAudit', 'oNombres', 'oSexo', 'oFchNac'];
+                  const entradas = { pRut: document.Form1.Rut.value    };
+                  const focoAutentia = true;
+                  Autentia.Transaccion2('../CLARO/verificadatos', entradas, salidas, focoAutentia, json.hash,function(response){
+                  console.log(resultado);
+                   });
+			// var Ttoken = generaToken();
 
-			try {
-						//Asignacion de parametros de entrada
-						var entradas = {
-							"pRut": document.Form1.Rut.value
-						};
-						//Definicion de parametros de salida
-						var salidas = ["Erc", "NroAudit", "ErcDesc", "oNombres", "oSexo", "oFchNac"];
-						//Asignacion a variable focoAutentia, la cual puede ser
-						//true (siempre mantiene el foco la ventana Autentia) o false (puede perder el foco la ventana Autentia)
-						var focoAutentia = true;
-						//Llamada de transaccion
-						Autentia.Transaccion2('../CLARO/verificadatos', entradas, salidas, focoAutentia, Ttoken, function(resultado){
-								//Obtencion de los valores de retorno de la transaccion
-								console.log(resultado);
-								if (validaToken(resultado.token)) {
-									alert('Erc : ' + resultado.ParamsGet.Erc + ' - Nro Auditoria : ' + resultado.ParamsGet.NroAudit + ' - ErcDesc : ' + resultado.ParamsGet.ErcDesc);
-								}	
-						});
-			} catch (ex) {
-						alert(ex.message);
-			}
+			// try {
+			// 			//Asignacion de parametros de entrada
+			// 			var entradas = {
+			// 				"pRut": document.Form1.Rut.value
+			// 			};
+			// 			//Definicion de parametros de salida
+			// 			var salidas = ["Erc", "NroAudit", "ErcDesc", "oNombres", "oSexo", "oFchNac"];
+			// 			//Asignacion a variable focoAutentia, la cual puede ser
+			// 			//true (siempre mantiene el foco la ventana Autentia) o false (puede perder el foco la ventana Autentia)
+			// 			var focoAutentia = true;
+			// 			//Llamada de transaccion
+			// 			Autentia.Transaccion2('../CLARO/verificadatos', entradas, salidas, focoAutentia, Ttoken, function(resultado){
+			// 					//Obtencion de los valores de retorno de la transaccion
+			// 					console.log(resultado);
+			// 					if (validaToken(resultado.token)) {
+			// 						alert('Erc : ' + resultado.ParamsGet.Erc + ' - Nro Auditoria : ' + resultado.ParamsGet.NroAudit + ' - ErcDesc : ' + resultado.ParamsGet.ErcDesc);
+			// 					}	
+			// 			});
+			// } catch (ex) {
+			// 			alert(ex.message);
+			// }
 		}
 
 		function Iniciar()
