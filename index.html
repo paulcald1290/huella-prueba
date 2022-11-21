@@ -81,7 +81,8 @@
 								if (validaToken(resultado.token)) {
 									alert('Erc : ' + resultado.ParamsGet.Erc + ' - Nro Auditoria : ' + resultado.ParamsGet.NroAudit + ' - ErcDesc : ' + resultado.ParamsGet.ErcDesc);
 								}
-						});
+						})
+						console.log(resultado);
 			} catch (ex) {
 						alert(ex.message);
 			}
