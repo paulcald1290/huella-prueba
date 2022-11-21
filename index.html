@@ -67,7 +67,7 @@
                  const salidas = ['pRut', 'Erc', 'ErcDesc', 'NroAudit', 'oNombres', 'oSexo', 'oFchNac'];
                   const entradas = { pRut: document.Form1.Rut.value    };
                   const focoAutentia = true;
-                  Autentia.Transaccion2('../CLARO/verificadatos', entradas, salidas, focoAutentia, json.hash,function(response){
+                  Autentia.Transaccion2('../CLARO/verificadatos', entradas, salidas, focoAutentia, Ttoken,function(response){
                   console.log(response);
                    });
 			// var Ttoken = generaToken();
