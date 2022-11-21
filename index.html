@@ -34,26 +34,12 @@
 
 	<script type='text/javascript'>
 		var Autentia = new plgAutentiaJS();
-		//var bcrypt = new bcryptJS();
 
 		function generaToken() {
 			var valToken;
-			var hash1 = CryptoJS.SHA512("01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-			
-			//var valToken;
-			//var valor = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-			//valToken = bcrypt.hash(valor,52);
-			console.log(hash1.toString(CryptoJS.enc.Hex));
-			return valToken;
-		// 	$.ajax({
-        //         url:   'gtoken.php',
-        //         type:  'get',
-		// 						async: false,
-		// 						success:  function (response) {
-        //         	valToken = response;
-        //         }
-        // });
-		// 		return valToken;
+			var hash1 = CryptoJS.SHA512("./1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");		
+			valToken = hash1.toString(CryptoJS.enc.Hex);
+			return valToken;		
 		}
 
 		function validaToken(SToken) {
