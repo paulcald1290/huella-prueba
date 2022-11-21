@@ -1,0 +1,146 @@
+<HTML>
+<HEAD>
+<!doctype html>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<TITLE>Verificacion de Identidad con Cedula Multibrowser 2.0</TITLE>
+	<!-- Definicion llamada de librerias JavaScript -->
+	<script type="text/javascript" src="./libMB/json2.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./libMB/jsrasign/ext/jsbn.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./libMB/jsrasign/ext/jsbn2.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./libMB/jsrasign/ext/rsa.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./libMB/jsrasign/ext/rsa2.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./libMB/jsrasign/ext/base64.js"></script>
+
+	<!-- for crypto.js -->
+	<script src="./libMB/crypto/yahoo-min.js"></script>
+	<script src="./libMB/crypto/core.js"></script>
+	<script src="./libMB/crypto/md5.js"></script>
+	<script src="./libMB/crypto/sha1.js"></script>
+	<script src="./libMB/crypto/sha256.js"></script>
+	<script src="./libMB/crypto/ripemd160.js"></script>
+	<script src="./libMB/crypto/x64-core.js"></script>
+	<script src="./libMB/crypto/sha512.js"></script>
+
+	<script language="JavaScript" type="text/javascript" src="./libMB/jsrasign/rsapem-1.1.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./libMB/jsrasign/rsasign-1.2.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./libMB/jsrasign/asn1hex-1.1.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./libMB/jsrasign/x509-1.1.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./libMB/jsrasign/crypto-1.1.min.js"></script>
+	<!--<script type="text/javascript" src="http://200.0.156.196/libMB/cryptojs/sha1.js"></script>-->
+	<script type="text/javascript" src="./libMB/pluginautentiav3.js"></script>
+	<script type="text/javascript" src="./libMB/jquery-2.1.4.min.js"></script>
+<!-- ****************************************** -->
+
+	<script type='text/javascript'>
+		var Autentia = new plgAutentiaJS();
+
+		function generaToken() {
+			var valToken;
+			$.ajax({
+                url:   'gtoken.php',
+                type:  'get',
+								async: false,
+								success:  function (response) {
+                	valToken = response;
+                }
+        });
+				return valToken;
+		}
+
+		function validaToken(SToken) {
+			var valToken;
+			var parametros = {
+							"SToken" : SToken
+			};
+
+			$.ajax({
+								data:  parametros,
+                url:   'vtoken.php',
+                type:  'get',
+								async: false,
+								success:  function (response) {
+                	valToken = response;
+                }
+        });
+				return valToken;
+		}
+
+		function Verificar()
+		{
+			var Ttoken = generaToken();
+
+			try {
+						//Asignacion de parametros de entrada
+						var entradas = {
+							pRut: document.Form1.Rut.value
+						};
+						//Definicion de parametros de salida
+						var salidas = ["Erc", "NroAudit", "ErcDesc", "oNombres", "oSexo", "oFchNac"];
+						//Asignacion a variable focoAutentia, la cual puede ser
+						//true (siempre mantiene el foco la ventana Autentia) o false (puede perder el foco la ventana Autentia)
+						var focoAutentia = true;
+						//Llamada de transaccion
+						Autentia.Transaccion2('../INSTITUCION/verificadatos', entradas, salidas, focoAutentia, Ttoken, function(resultado){
+								//Obtencion de los valores de retorno de la transaccion
+								if (validaToken(resultado.token)) {
+									alert('Erc : ' + resultado.ParamsGet.Erc + ' - Nro Auditoria : ' + resultado.ParamsGet.NroAudit + ' - ErcDesc : ' + resultado.ParamsGet.ErcDesc);
+								}
+						});
+			} catch (ex) {
+						alert(ex.message);
+			}
+		}
+
+		function Iniciar()
+		{
+			var Ttoken = generaToken();
+
+			Autentia.IniciarSesionLogin(document.Form1.RutOper.value, Ttoken, function(response){
+					if (validaToken(response.token)) {
+						if (response.ParamsGet.hasOwnProperty('LoginResult')) {
+							alert(response.ParamsGet.LoginResult);
+						}
+						if (response.ParamsGet.LoginResult == 0)
+						{
+							alert("Inicio Sesion");
+						}
+					} else {
+						alert('Token invalido...');
+					};
+			})
+		}
+
+		function Terminar()
+		{
+			var Ttoken = generaToken();
+
+			Autentia.CerrarSesion(Ttoken);
+		}
+	</script>
+
+</HEAD>
+<BODY>
+	<h1><center>Verificacion de Identidad Multibrowser 2.0</center></h1>
+
+	<form name="Form1">
+	<center>
+	<table border=0>
+	<tr>
+	<td>
+		<p>
+			Rut Operador:
+			<input type='text' name='RutOper' id='RutOper' value='9999999-9' />
+			<input type='button' value='Iniciar' onClick='Iniciar()' />
+			<input type='button' value='Terminar' onClick='Terminar()' />
+			Rut a verificar:
+			<input type='text' name='Rut' id='Rut' value='9999999-9' />
+			<input type='button' value='Verificar' onClick='Verificar()' />
+		</p>
+	</td>
+	</tr>
+	</table>
+	</center>
+	</form>
+</BODY>
+</HTML>
