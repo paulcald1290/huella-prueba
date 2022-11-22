@@ -69,7 +69,7 @@
                   const entradas = { pRut: document.Form1.Rut.value    };
                   const focoAutentia = true;
                   Autentia.Transaccion2('../CLARO/verificadatos', entradas, salidas, focoAutentia, Ttoken,function(response){
-                  console.log(response);
+                  console.log('salida : ', response.ParamsGet);
                    });
 			// var Ttoken = generaToken();
 
